@@ -14,10 +14,12 @@ explicit boundary. The next implementation-ready packet is R1A in `NEXT_WORK_PAC
 - GitHub repository: `https://github.com/Inzania2016/digital-abiogenesis`
 - Default branch: `main`
 - Local `main` tracks `origin/main`.
-- The owner-created remote `LICENSE` commit is preserved as the root of history.
-- The completed R0 baseline is being published directly to `main` under the authorized
-  initialization packet; final commit and push results are recorded separately after they
-  exist.
+- The owner-created remote `LICENSE` commit `2306243a94ef2030936ca0f63991dadcc4d9b995`
+  is preserved as the root of history.
+- The completed R0 baseline was published directly to `main` as
+  `dcc8f69f60f225040610ebd896dcc16b8f4e8512` under the authorized initialization packet.
+- Publication details are recorded in
+  `docs/verification/2026-07-21-git-publication.md`.
 - Future feature commits remain subject to the explicit commit gate in `AGENTS.md`.
 
 ## Implemented Capabilities
@@ -70,11 +72,12 @@ runs; metrics summarize outcomes; renderers observe state without changing it. S
 - `scripts/clean.ps1`: removed bytecode, egg metadata, and other caches but returned an
   incomplete-clean error for the pre-existing permission-locked `.pytest_cache`.
 - Pygame visual verification: not performed by Codex and not claimed.
-- Git initialization and remote reconciliation: complete on local `main`; R0 commit and push
-  are pending the final publication steps.
+- Git initialization, remote reconciliation, and R0 publication: complete. Local `main` and
+  `origin/main` matched the published R0 commit at final verification.
 
-The exact command history and boundaries are recorded in
-`docs/verification/2026-07-20-r0.md`.
+The exact R0 engineering verification and publication histories are recorded in
+`docs/verification/2026-07-20-r0.md` and
+`docs/verification/2026-07-21-git-publication.md`.
 
 
 ## Known Limitations
