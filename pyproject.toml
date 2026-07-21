@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "digital-abiogenesis"
+version = "0.1.0"
+description = "Tiny artificial-life grid-world experiments."
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "gymnasium>=0.29",
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+dev = [
+    "Pillow>=10",
+    "pytest>=8",
+    "ruff>=0.12",
+]
+render = [
+    "pygame>=2.5",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

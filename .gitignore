@@ -1,0 +1,61 @@
+# Python bytecode, caches, and build metadata
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.pytest-tmp/
+.mypy_cache/
+.pyright/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Generated experiment and runtime artifacts
+runs/
+artifacts/
+models/
+outputs/
+output/
+screenshots/
+*.log
+
+# Local environments, credentials, and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# VS Code: retain intentionally shared project configuration
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Obsidian: retain shared vault configuration, ignore personal state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.trash/
+
+# Operating systems and editor scratch files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~

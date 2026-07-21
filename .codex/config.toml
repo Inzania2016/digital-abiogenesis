@@ -1,0 +1,17 @@
+# .codex/config.toml
+
+# Keep Codex interactive for this project.
+# This is a lab creature, not a chainsaw with legs.
+approval_policy = "on-request"
+
+# Use workspace write behavior rather than full machine access.
+sandbox_mode = "workspace-write"
+
+# Leave model unspecified unless you want to force a specific Codex model.
+# model = "gpt-5.3-codex"
+
+[project]
+name = "digital-abiogenesis"
+
+[notifications]
+enabled = true
