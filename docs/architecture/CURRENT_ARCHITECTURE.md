@@ -1,11 +1,11 @@
 # Current Architecture
 
-Last inventoried: 2026-07-20
+Last inventoried: 2026-07-23
 
 ## Scope
 
-This is the implemented Bacterium-0 architecture at R0. It inventories existing behavior;
-it does not prescribe Bacterium-1 or refactor the runtime.
+This is the implemented Bacterium-0 architecture plus the R1A specification boundary. It
+inventories existing behavior; it does not prescribe Bacterium-1 or refactor the runtime.
 
 ## Environment
 
@@ -57,13 +57,26 @@ All reward-shaping command defaults remain zero. No R0 tooling changes their sem
 `training/evaluate_q_learning.py` evaluates greedy trained policies against matched random
 worlds, compares all current encoder variants, supports multi-seed aggregation, exposes
 reward/energy experiment overrides, and formats CLI reports. It is the command wrapped by
-the R0 benchmark script.
+the legacy benchmark script.
+
+R1A defines named suites, scenarios, canonical policy IDs, seed policy, and artifact
+schemas in `docs/experiments/BACTERIUM_0_BENCHMARK_V1.md` and
+`docs/experiments/EXPERIMENT_ARTIFACT_CONTRACT.md`. These are specifications, not an
+implemented runtime layer. The current evaluator cannot select only the canonical policy
+set, vary food/poison counts through its CLI, separate training and evaluation
+configurations for `resource-shift-v1`, or emit contract-v1 run directories. R1B owns those
+orchestration seams.
 
 ## Metrics
 
 `metrics/recorder.py` defines immutable episode and run summaries. Current measurements
 cover total/average reward, lifespan, food, poison, wasted/repeated movement, unique tiles,
 loop categories, novelty bonuses, and revisit ratio.
+
+Current `RunSummary` semantics matter to R1: reward, lifespan, and revisit ratio are episode
+means, while count and coverage fields are totals over evaluation episodes. The legacy
+multi-seed evaluator then averages those seed summaries without dispersion. R1B must add
+contract aggregation without changing episode measurement.
 
 ## Rendering
 
@@ -87,6 +100,10 @@ or environment dynamics.
 - `scripts/clean.ps1` removes safe generated caches and optionally output folders.
 - `scripts/package-source.ps1` creates a filtered source archive.
 - `scripts/run-benchmark.ps1` wraps the current deterministic multi-seed evaluation.
+
+The R1A example artifacts under `docs/experiments/examples/b0-quick-v1/` are synthetic
+documentation, not generated results. No scenario registry, benchmark runner, artifact
+writer, or validator is implemented yet.
 
 ## Documentation
 
@@ -117,5 +134,21 @@ explicit config + seed
                  optional training update   episode metrics
                                                   |
                                                   v
-                                      run summary / comparison
+                                     run summary / comparison
+```
+
+The specified R1B control flow will add a behavior-neutral orchestration layer around this
+flow:
+
+```text
+scenario registry + suite profile
+               |
+               v
+     existing train/evaluate seams
+               |
+               v
+ per-seed evaluation records + aggregates
+               |
+               v
+ manifest.json + metrics.json + summary.md
 ```

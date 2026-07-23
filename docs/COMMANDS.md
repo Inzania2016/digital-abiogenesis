@@ -34,13 +34,16 @@ Remove ignored run/artifact output only when intentional:
 .\.venv\Scripts\python.exe -m abiogenesis.training.evaluate_q_learning --seed 21 --train-episodes 1000 --eval-episodes 50 --grid-size 10 --compare-scent
 ```
 
-## Multi-seed and Reward Experiments
+## Legacy Multi-seed and Reward Experiments
 
-The current R0 wrapper uses the latest small documented comparison:
+The current wrapper uses the latest small documented comparison:
 
 ```powershell
 .\scripts\run-benchmark.ps1
 ```
+
+This is the R1A regression command, not the contract-v1 runner. It evaluates every legacy
+variant, does not select the five canonical policies, and does not write a run directory.
 
 Direct forms:
 
@@ -50,6 +53,19 @@ Direct forms:
 .\.venv\Scripts\python.exe -m abiogenesis.training.evaluate_q_learning --seed 21 --seeds 3 --train-episodes 200 --eval-episodes 20 --grid-size 10 --multi-seed --loop-penalty -0.05
 .\.venv\Scripts\python.exe -m abiogenesis.training.evaluate_q_learning --seed 21 --seeds 3 --train-episodes 200 --eval-episodes 20 --grid-size 10 --multi-seed --novelty-reward 0.02
 ```
+
+## Bacterium-0 Benchmark v1
+
+The named benchmark is specified in
+`experiments/BACTERIUM_0_BENCHMARK_V1.md`. Canonical profiles are:
+
+| Suite | Replicate roots | Training episodes | Evaluation episodes |
+| --- | --- | ---: | ---: |
+| `b0-quick-v1` | 21-23 | 200 | 20 |
+| `b0-full-v1` | 21-30 | 1000 | 100 |
+
+R1B will implement the runner and artifact writer. No canonical runner command exists yet;
+do not present the illustrative command in the documentation example as executable.
 
 ## Encoder Variants
 

@@ -20,13 +20,25 @@ Run the complete quality gate:
 2. `ruff check .`;
 3. `ruff format --check .`.
 
-Run the current R0 deterministic benchmark wrapper:
+Run the legacy deterministic benchmark wrapper:
 
 ```powershell
 .\scripts\run-benchmark.ps1
 ```
 
-R1 will replace this wrapper's generic multi-seed command with named scenarios.
+This remains the R1A regression check. It does not emit contract-v1 artifacts and is not a
+substitute for the named runner specified for R1B.
+
+Validate the R1A documentation examples without third-party schema tools:
+
+```powershell
+.\.venv\Scripts\python.exe -m json.tool docs/experiments/examples/b0-quick-v1/manifest.json
+.\.venv\Scripts\python.exe -m json.tool docs/experiments/examples/b0-quick-v1/metrics.json
+```
+
+For the example artifact pair, recompute SHA-256 and confirm it matches the declarations in
+`manifest.json`. Structural, cross-file, aggregate-arithmetic, and scenario-registry
+validation becomes an automated R1B responsibility.
 
 ## Manual Pygame Verification
 
@@ -52,6 +64,8 @@ Codex may verify:
 - commands it actually runs and their exit codes;
 - automated tests, lint, formatting, imports, deterministic CLI output, archive contents,
   and non-graphical renderer helpers;
+- JSON parsing, artifact hashes, aggregate arithmetic, and contract structure it actually
+  checks;
 - filesystem and configuration facts visible in the workspace.
 
 Only Joe may verify:

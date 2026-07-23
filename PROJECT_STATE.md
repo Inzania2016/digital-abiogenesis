@@ -1,13 +1,15 @@
 # Project State
 
-Last reconciled: 2026-07-21
+Last reconciled: 2026-07-23
 
 ## Current Phase
 
-**R0: Rebaseline and engineering retool, implemented and automatically verified.**
-Bacterium-0 is conceptually frozen as the legacy benchmark organism. R0 changed the
-engineering control plane, not organism behavior. Manual pygame verification remains Joe's
-explicit boundary. The next implementation-ready packet is R1A in `NEXT_WORK_PACKET.md`.
+**R1A: Bacterium-0 benchmark specification, implemented and automatically verified.**
+Bacterium-0 remains conceptually frozen as the legacy benchmark organism. R1A defines
+named suites, scenarios, canonical policies, metric semantics, and artifact contract v1
+without implementing the runner or changing organism behavior. Manual pygame verification
+remains Joe's explicit boundary. The next implementation-ready packet is R1B in
+`NEXT_WORK_PACKET.md`.
 
 ## Canonical Repository
 
@@ -34,6 +36,9 @@ explicit boundary. The next implementation-ready packet is R1A in `NEXT_WORK_PAC
 - ASCII replay and a pygame observation window with controls, overlays, screenshots,
   optional PNG sprites, and shape fallbacks.
 - A Pillow-based sprite transparency conversion tool.
+- An approved `bacterium-0-v1` specification with quick/full suite profiles, five named
+  scenarios, five canonical policies, exact seed/budget rules, and contract-v1 artifact
+  examples.
 
 Historical experiment results—including mixed and negative memory/novelty findings—are
 preserved in `docs/experiments.md` and `docs/lab-notes.md`.
@@ -74,15 +79,26 @@ runs; metrics summarize outcomes; renderers observe state without changing it. S
 - Pygame visual verification: not performed by Codex and not claimed.
 - Git initialization, remote reconciliation, and R0 publication: complete. Local `main` and
   `origin/main` matched the published R0 commit at final verification.
+- R1A on 2026-07-23: example manifest and metrics JSON parsed; declared example hashes
+  matched; all metric keys, sample counts, and aggregate population statistics were
+  recomputed successfully.
+- R1A `scripts/check.ps1`: passed with 87 tests, Ruff lint, and Ruff formatting checks.
+- R1A `scripts/run-benchmark.ps1`: passed for seeds 21-23, 200 training episodes, and 20
+  evaluation episodes; it reproduced the historical Phase 3D metrics.
+- R1A full `b0-full-v1` suite: not run, as required by the specification packet.
 
 The exact R0 engineering verification and publication histories are recorded in
 `docs/verification/2026-07-20-r0.md` and
-`docs/verification/2026-07-21-git-publication.md`.
+`docs/verification/2026-07-21-git-publication.md`. R1A evidence is in
+`docs/verification/2026-07-23-r1a.md`.
 
 
 ## Known Limitations
 
-- No named canonical benchmark scenarios or standard run artifact writer yet.
+- Named benchmark scenarios and artifact schemas are specified but no general runner,
+  artifact writer, registry, or validator is implemented yet.
+- The sparse-food, poison-rich, and resource-shift scenarios require R1B orchestration
+  support; the legacy CLI cannot express their full contracts.
 - Experiment comparisons are driven by large command surfaces rather than manifests.
 - The tabular state space grows quickly for memory-rich encoders; recorded results show
   that several variants do not outperform the local baseline under tested budgets.

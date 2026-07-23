@@ -63,3 +63,57 @@ personal editor/vault state are excluded from Git. Intentional source, tests, do
 scripts, shared project configuration, historical experiment evidence, and renderer assets
 are included. The R0 publication is authorized directly to `main`; future feature work must
 continue to follow the explicit commit gate in `AGENTS.md`.
+
+## 2026-07-23 — Bacterium-0 benchmark v1 uses JSON artifacts
+
+Canonical manifests use `manifest.json`; metrics use `metrics.json`; interpretation uses
+`summary.md`. JSON requires no new dependency, matches existing machine-readable output,
+and keeps the v1 artifact set on one serialization format. TOML is not selected for v1.
+
+The contract is versioned as `1.0`, the benchmark as `bacterium-0-v1`, and run IDs use
+`YYYYMMDDTHHMMSSZ_<scenario-id>_<suite-id>_<four-hex-suffix>`.
+
+## 2026-07-23 — Quick and full suites have fixed seed lists and budgets
+
+`b0-quick-v1` uses ordered replicate roots `[21, 22, 23]`, 200 training episodes per
+learned policy and seed, and 20 evaluation episodes per policy and seed.
+
+`b0-full-v1` uses ordered replicate roots `[21, 22, 23, 24, 25, 26, 27, 28, 29, 30]`,
+1000 training episodes per learned policy and seed, and 100 evaluation episodes per policy
+and seed. R1A does not run or claim the full suite.
+
+Evaluation roots preserve the current `seed + 100000` derivation. Adjacent replicate roots
+produce overlapping episode-seed windows under current behavior; the benchmark documents
+that limitation instead of presenting the roots as statistically independent worlds.
+
+## 2026-07-23 — Bacterium-0 v1 has five canonical policy variants
+
+Canonical runs compare `random`, `local-q`, `conflict-scent-q`, `novelty-scent-q`, and
+`novelty-scent-q-rewarded`. The rewarded variant uses the historically recorded novelty
+reward `0.02`. Other existing encoders remain available for research without becoming
+mandatory benchmark policies.
+
+## 2026-07-23 — Scenario resource counts are explicit
+
+`stable-default-v1` uses unchanged defaults. `sparse-food-v1` changes only `food_count` from
+8 to 4. `poison-rich-v1` changes only `poison_count` from 6 to 12.
+`resource-shift-v1` trains under stable defaults and evaluates the frozen policy under
+`sparse-food-v1`. These count changes are benchmark configuration, not new environment
+behavior, and require runner support in R1B because the legacy CLI does not expose them.
+
+## 2026-07-23 — Metrics v1 preserves implementation semantics and requires dispersion
+
+Per-seed reward, lifespan, and revisit ratio are episode means. Count and coverage metrics
+are totals across the seed record's evaluation episodes. Cross-seed aggregates require
+`count`, `mean`, population standard deviation, `min`, and `max`; confidence intervals are
+deferred until runner cost is measured.
+
+Schema-defined fields remain present. Measured zero is distinct from `null`, which means
+inapplicable or uncollected. The existing machine name `novelty_reward_total` is retained
+instead of adding the proposed alias `novelty_bonus_total`.
+
+## 2026-07-23 — Generated policy artifacts remain optional and ignored
+
+A policy artifact is emitted only when requested. Its policy ID, format, path, SHA-256,
+byte count, and load command must be declared. Otherwise the run has no `policy/`
+directory. R1A does not authorize curated policy commits or change the owner commit gate.

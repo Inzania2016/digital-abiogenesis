@@ -1,0 +1,196 @@
+{
+  "contract_version": "1.0",
+  "benchmark_version": "bacterium-0-v1",
+  "run_id": "20260723T184502Z_stable-default-v1_b0-quick-v1_a7f3",
+  "status": "partial",
+  "started_at": "2026-07-23T18:45:02Z",
+  "completed_at": "2026-07-23T18:45:03Z",
+  "scenario_id": "stable-default-v1",
+  "suite_id": "b0-quick-v1",
+  "source": {
+    "kind": "git",
+    "repository_url": "https://github.com/Inzania2016/digital-abiogenesis",
+    "commit": "0e624eba4021a9005fe97ec43a87366e052565a8",
+    "dirty": true
+  },
+  "runtime": {
+    "python_version": "3.13.13",
+    "python_implementation": "CPython",
+    "platform_system": "Windows",
+    "platform_release": "example",
+    "machine": "AMD64"
+  },
+  "environment": {
+    "training": {
+      "width": 10,
+      "height": 10,
+      "food_count": 8,
+      "poison_count": 6,
+      "initial_energy": 20,
+      "max_steps": 100,
+      "step_energy_cost": 1,
+      "food_energy": 5,
+      "poison_energy_cost": 8,
+      "food_reward": 1.0,
+      "poison_penalty": -1.0,
+      "step_penalty": -0.01
+    },
+    "evaluation": {
+      "width": 10,
+      "height": 10,
+      "food_count": 8,
+      "poison_count": 6,
+      "initial_energy": 20,
+      "max_steps": 100,
+      "step_energy_cost": 1,
+      "food_energy": 5,
+      "poison_energy_cost": 8,
+      "food_reward": 1.0,
+      "poison_penalty": -1.0,
+      "step_penalty": -0.01
+    }
+  },
+  "policies": [
+    {
+      "policy_id": "random",
+      "agent_type": "RandomAgent",
+      "encoder": null,
+      "learning": null,
+      "reward_shaping": {
+        "loop_penalty": 0.0,
+        "novelty_reward": 0.0
+      },
+      "evaluation_exploration": false,
+      "policy_artifact_requested": false
+    },
+    {
+      "policy_id": "local-q",
+      "agent_type": "QLearningAgent",
+      "encoder": "local",
+      "learning": {
+        "alpha": 0.2,
+        "gamma": 0.95,
+        "epsilon_initial": 1.0,
+        "epsilon_decay": 0.995,
+        "epsilon_min": 0.05
+      },
+      "reward_shaping": {
+        "loop_penalty": 0.0,
+        "novelty_reward": 0.0
+      },
+      "evaluation_exploration": false,
+      "policy_artifact_requested": false
+    },
+    {
+      "policy_id": "conflict-scent-q",
+      "agent_type": "QLearningAgent",
+      "encoder": "conflict-scent",
+      "learning": {
+        "alpha": 0.2,
+        "gamma": 0.95,
+        "epsilon_initial": 1.0,
+        "epsilon_decay": 0.995,
+        "epsilon_min": 0.05
+      },
+      "reward_shaping": {
+        "loop_penalty": 0.0,
+        "novelty_reward": 0.0
+      },
+      "evaluation_exploration": false,
+      "policy_artifact_requested": false
+    },
+    {
+      "policy_id": "novelty-scent-q",
+      "agent_type": "QLearningAgent",
+      "encoder": "novelty-scent",
+      "learning": {
+        "alpha": 0.2,
+        "gamma": 0.95,
+        "epsilon_initial": 1.0,
+        "epsilon_decay": 0.995,
+        "epsilon_min": 0.05
+      },
+      "reward_shaping": {
+        "loop_penalty": 0.0,
+        "novelty_reward": 0.0
+      },
+      "evaluation_exploration": false,
+      "policy_artifact_requested": false
+    },
+    {
+      "policy_id": "novelty-scent-q-rewarded",
+      "agent_type": "QLearningAgent",
+      "encoder": "novelty-scent",
+      "learning": {
+        "alpha": 0.2,
+        "gamma": 0.95,
+        "epsilon_initial": 1.0,
+        "epsilon_decay": 0.995,
+        "epsilon_min": 0.05
+      },
+      "reward_shaping": {
+        "loop_penalty": 0.0,
+        "novelty_reward": 0.02
+      },
+      "evaluation_exploration": false,
+      "policy_artifact_requested": false
+    }
+  ],
+  "seeds": {
+    "replicate_roots": [21, 22, 23],
+    "training_roots": [21, 22, 23],
+    "evaluation_roots": [100021, 100022, 100023],
+    "derivation": "training episode seed = training root + episode index; evaluation root = replicate root + 100000; evaluation episode seed = evaluation root + episode index"
+  },
+  "budgets": {
+    "training_episodes_per_learned_policy_per_seed": 200,
+    "evaluation_episodes_per_policy_per_seed": 20,
+    "policy_count": 5,
+    "learned_policy_count": 4
+  },
+  "invocation": {
+    "command": ".\\.venv\\Scripts\\python.exe -m abiogenesis.benchmarks.run --scenario stable-default-v1 --suite b0-quick-v1",
+    "working_directory": "repository-root"
+  },
+  "artifacts": {
+    "metrics": {
+      "path": "metrics.json",
+      "media_type": "application/json",
+      "sha256": "382f473420bc77ca02109b8e666de11010e29e4025de0c7edebc543c3f702540"
+    },
+    "summary": {
+      "path": "summary.md",
+      "media_type": "text/markdown",
+      "sha256": "1b9b13f9aa559574d6452ad13255eba59004cf0407ea29ccc3b337ce457c1b05"
+    },
+    "policies": []
+  },
+  "verification": {
+    "automated": {
+      "status": "not_run",
+      "commands": [],
+      "notes": ["Documentation example; no benchmark command was executed."]
+    },
+    "visual": {
+      "status": "not_performed",
+      "verified_by": null,
+      "notes": ["No pygame verification is implied."]
+    }
+  },
+  "deviations": [
+    {
+      "code": "documentation-example",
+      "message": "Synthetic values demonstrate the artifact shape; no experiment ran.",
+      "effect": "This run cannot support behavior or regression claims."
+    },
+    {
+      "code": "runner-not-implemented",
+      "message": "The example invocation names the planned R1B runner surface.",
+      "effect": "The command is illustrative and was not executed."
+    }
+  ],
+  "notes": [
+    "Generated policy artifacts were not requested.",
+    "The dirty source state is intentional for this partial documentation example."
+  ]
+}
