@@ -91,3 +91,40 @@ must not imply independent worlds.
 
 Likely future direction: decide after R1C whether a future benchmark version should use
 non-overlapping windows. Do not change v1 seed semantics in place.
+
+## TD-011: Experimental Evaluation Loops Duplicate Legacy Metric Collection
+
+The NEAT raw-reward evaluator deliberately avoids refactoring the oversized legacy
+evaluator, but both collect similar episode diagnostics. This minimizes RS-01 behavior
+risk while creating another path that could drift.
+
+Likely future direction: use characterization evidence to extract a policy-neutral episode
+recorder only when a narrow packet can prove semantic equivalence.
+
+## TD-012: Winning Genomes Use Trusted-Local Pickle
+
+NEAT-Python genomes are saved with pickle for exact reload. Pickle is Python/version
+sensitive and unsafe for untrusted input. The same run also stores portable network JSON,
+effective configuration, versions, and hashes, but the JSON path is not yet a native
+Digital Abiogenesis loader.
+
+Likely future direction: keep generated pickles ignored; evaluate a safe project-owned
+network loader only if curated or cross-version policy artifacts are approved.
+
+## TD-013: Neuroevolution Reproducibility Is Bounded, Not Bit-Exact Across Platforms
+
+RS-01 seeds Python, NumPy, NEAT, environment resets, and serial ordering. Floating-point,
+dependency, and platform changes may still alter evolution. A dirty source run is labeled
+partial.
+
+Likely future direction: repeat clean-source experiments before research claims, record
+dependency locks when justified, and test Windows parallelism before adding workers.
+
+## TD-014: Future Python/Godot Boundary Is Unimplemented
+
+The Lenia architecture defines a file-first protocol and CPU/GPU parity measures, but
+field serialization performance, Godot 4.7.1 APIs, headless compute, synchronization, and
+numeric tolerances remain unverified.
+
+Likely future direction: implement L0 CPU reference before selecting or building the L1
+Godot boundary.

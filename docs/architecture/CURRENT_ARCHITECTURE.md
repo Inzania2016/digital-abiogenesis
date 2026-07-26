@@ -4,9 +4,10 @@ Last inventoried: 2026-07-26
 
 ## Scope
 
-This is the implemented Bacterium-0 architecture through the R1B benchmark control layer.
-It inventories existing behavior; it does not prescribe Bacterium-1 or refactor the
-legacy evaluator.
+This is the implemented Bacterium-0 architecture through the R1B benchmark control layer
+plus the isolated RS-01 experimental NEAT seam. It inventories existing behavior; it does
+not prescribe Bacterium-1 or refactor the legacy evaluator. The proposed Lenia/Godot
+architecture is documentation only.
 
 ## Environment
 
@@ -95,6 +96,24 @@ Canonical runs contain all five policies. Test-smoke runs, policy subsets, and d
 runs record deviations and cannot be marked `completed`. Optional learned Q tables are
 written only when requested.
 
+## Experimental Neuroevolution Side Track
+
+`src/abiogenesis/neuroevolution/` is optional and outside benchmark contract `1.0`:
+
+- `observation.py` normalizes the existing 13-value novelty-scent state in a fixed order;
+- `policy.py` maps a feed-forward network's five scores to the unchanged action order;
+- `fitness.py` evaluates serial episodes using only raw environment reward as fitness and
+  records existing secondary diagnostics;
+- `config.py` loads optional NEAT-Python and writes a preserved effective configuration;
+- `trainer.py` separates experiment, fitness, and holdout seeds and executes evolution;
+- `artifacts.py` and `validation.py` implement provisional `neat-research-0.1` lifecycle,
+  inventory, and hash rules;
+- `replay.py` validates and loads a trusted local winner for existing ASCII rendering.
+
+This seam calls the same environment and encoder behavior; it does not change Q-learning,
+rewards, observations, metrics, or canonical policy registration. Generated genomes and
+runs remain ignored.
+
 ## Rendering
 
 - `render/ascii_renderer.py` produces bordered observation and status text.
@@ -128,6 +147,10 @@ directories and validated against the implemented registry.
 Root control-plane files own current intent, decisions, state, verification, and next work.
 `docs/lab-notes.md` and `docs/experiments.md` preserve chronological evidence. `HOME.md`
 provides Obsidian navigation without becoming a competing source of truth.
+
+The future two-plane Lenia proposal is maintained in
+`docs/research/lenia/LENIA_GODOT_ARCHITECTURE.md`. No continuous field implementation,
+Godot project, shader, or GPU dependency is present.
 
 ## Data Flow
 
@@ -168,4 +191,14 @@ scenario registry + suite profile
                |
                v
  manifest.json + metrics.json + summary.md
+```
+
+RS-01 adds an optional research path:
+
+```text
+novelty-scent observation -> normalized 13-vector -> feed-forward NEAT network
+                                                       |
+                      raw reward fitness <--- serial environment episodes
+                                                       |
+             winner + diagnostics -> neat-research-0.1 artifacts -> ASCII replay
 ```

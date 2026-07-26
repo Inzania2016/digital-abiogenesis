@@ -22,6 +22,9 @@ dev = [
 render = [
     "pygame>=2.5",
 ]
+neat = [
+    "neat-python>=2.0,<3",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]

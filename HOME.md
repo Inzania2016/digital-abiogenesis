@@ -21,6 +21,9 @@ Obsidian-friendly navigation only; linked files remain authoritative for their s
 - [[docs/experiments/BACTERIUM_0_BENCHMARK_V1|Bacterium-0 benchmark v1]]
 - [[docs/experiments/EXPERIMENT_ARTIFACT_CONTRACT|Experiment artifact contract]]
 - [[docs/experiments/examples/b0-quick-v1/summary|Artifact contract example]]
+- [[docs/research/lenia/README|Lenia and neuroevolution research side track]]
+- [[docs/research/NEAT_BACTERIUM0_FEASIBILITY|NEAT Bacterium-0 feasibility contract and result]]
+- [[docs/work-packets/RS-02_CONWAY_TO_LENIA_CPU_REFERENCE|Proposed RS-02 CPU reference packet]]
 
 ## Historical Evidence
 

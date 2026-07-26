@@ -99,6 +99,38 @@ The smoke run is always `partial` and cannot support benchmark claims. Runtime r
 written below `runs/`, which is ignored. R1C owns canonical quick/full evidence execution;
 do not run `b0-full-v1` casually.
 
+## Experimental NEAT Side Track
+
+Install the optional reviewed NEAT-Python 2.x extra:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -e ".[dev,render,neat]"
+```
+
+Resolve the default exploratory plan without writing a run:
+
+```powershell
+.\.venv\Scripts\python.exe -m abiogenesis.neuroevolution.trainer --dry-run
+```
+
+Run the bounded RS-01 defaults serially under ignored `runs/neat/`:
+
+```powershell
+.\.venv\Scripts\python.exe -m abiogenesis.neuroevolution.trainer
+```
+
+Validate and replay a trusted local winner:
+
+```powershell
+.\.venv\Scripts\python.exe -m abiogenesis.neuroevolution.trainer --validate-only <run-directory>
+.\.venv\Scripts\python.exe -m abiogenesis.neuroevolution.replay --neat-run <run-directory> --seed 31 --debug-overlay
+```
+
+NEAT artifacts use provisional `neat-research-0.1`, not benchmark contract `1.0`.
+`winner_genome.pkl` must never be loaded from an untrusted source. The dedicated replay
+module avoids broadening the existing random/Q-learning playback CLI and currently supports
+ASCII only; no pygame verification is implied.
+
 ## Encoder Variants
 
 Available encoder names are `local`, `scent`, `conflict-scent`, `memory-scent`,

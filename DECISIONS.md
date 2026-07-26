@@ -139,3 +139,46 @@ state, complete metrics, and verified artifacts may terminate as `completed`.
 
 The PowerShell wrapper now defaults to the named contract-v1 runner. The historical Phase
 3D command remains available explicitly as `scripts/run-benchmark.ps1 -Mode Legacy`.
+
+## 2026-07-26 — NEAT-Python 2.x is an optional research dependency
+
+RS-01 uses `neat-python>=2.0,<3` only through the `neat` extra. Stable 2.0.0 was reviewed:
+it is BSD-3-Clause, declares Python 3.13 support, provides deterministic population seeding,
+and can export feed-forward networks to JSON. The upper bound excludes the next breaking
+major; unreleased 2.1 repository state is not the minimum. NEAT remains absent from default,
+development, and rendering dependencies.
+
+## 2026-07-26 — NEAT remains experimental and has a separate artifact contract
+
+The policy ID is `neat-feedforward-experimental`. It does not join the five canonical
+Bacterium-0 policies or change benchmark contract `1.0`. Evolution runs use provisional
+`artifact_type: neuroevolution-research` and `artifact_contract: neat-research-0.1` under
+ignored `runs/neat/` directories. Pickled genomes are trusted-local artifacts; portable
+network JSON, exact effective configuration, hashes, and lifecycle state are also required.
+
+## 2026-07-26 — Experimental NEAT reuses novelty-scent without shaping fitness
+
+The fixed 13-value input vector is the existing novelty-scent state normalized by each
+documented discrete maximum. Outputs follow the existing action enumeration exactly:
+north, south, east, west, wait. The first maximum wins ties. Fitness is mean unmodified
+environment reward over ordered fitness roots and episodes; all other measures remain
+secondary diagnostics.
+
+## 2026-07-26 — RS-01 evaluation is serial with isolated seed roles
+
+Python, NumPy, and NEAT population initialization use `experiment_seed`. Ordered fitness
+roots `[21, 22, 23]` select the winner; disjoint holdout roots `[31, 32, 33]` are used only
+after selection. Environment episode seeds are root plus zero-based episode index. Workers
+remain one until deterministic Windows parallel behavior and ordering are separately
+proved. Cross-platform bit-for-bit reproducibility is not claimed.
+The strongest tested guarantee is repeatable NEAT initial populations under the same
+version, configuration, seed, and runtime; a different experiment seed changes that
+population. Wall-clock run IDs and NEAT's exported JSON timestamp are intentionally not
+bit-identical and do not influence fitness.
+
+## 2026-07-26 — Lenia must have a deterministic CPU reference before Godot GPU work
+
+The proposed continuous substrate begins with a small NumPy CPU mathematical reference and
+32x32/64x64 fixtures. A future Godot 4.7.1 backend must be compared using measured maximum
+and mean cell error, mass difference, and centroid difference under owner-approved
+tolerances. RS-01 adds no Lenia runtime or Godot project and copies no external code.

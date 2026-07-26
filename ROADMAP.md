@@ -79,3 +79,10 @@ research question.
   transparent capability, cost, and failure tradeoffs.
 - **Major risks:** incompatible comparisons, premature neural/LLM scope, compute growth,
   and mistaking complexity for intelligence.
+
+## Isolated Research Side Tracks
+
+RS-01 proves optional neuroevolution plumbing on Bacterium-0 and proposes a CPU-first
+Lenia/Godot path. It does not replace or advance the R0-R6 mainline. The separate
+RS-01/L0-L7 research ladder, evidence gates, and model recommendations are maintained in
+`docs/research/lenia/IMPLEMENTATION_ROADMAP.md`; any stage requires its own approved packet.

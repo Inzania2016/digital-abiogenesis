@@ -4,12 +4,15 @@ Last reconciled: 2026-07-26
 
 ## Current Phase
 
-**R1B: Bacterium-0 benchmark runner and artifact writer, implemented and automatically
-verified.** Bacterium-0 remains conceptually frozen as the legacy benchmark organism. R1B
-implements the approved R1A scenario/suite catalog, narrow execution layer, contract-v1
-artifact writer, deterministic summary, optional policy persistence, and dependency-free
-validator without changing organism behavior. Manual pygame verification remains Joe's
-explicit boundary. The next implementation-ready packet is R1C in `NEXT_WORK_PACKET.md`.
+**R1C remains the active Bacterium-0 mainline packet after the committed and verified R1B
+baseline.** Bacterium-0 remains conceptually frozen as the legacy benchmark organism.
+
+The isolated RS-01 side track is implemented and automatically verified: optional
+NEAT-Python feed-forward evolution reuses the existing novelty-scent representation and
+unmodified reward, writes a separate provisional research artifact, and supports trusted
+local ASCII replay. RS-01 also documents a CPU-first Lenia/Godot architecture; it adds no
+Lenia runtime or Godot project. It does not replace or begin R1C in `NEXT_WORK_PACKET.md`.
+Manual pygame verification remains Joe's explicit boundary.
 
 ## Canonical Repository
 
@@ -46,6 +49,10 @@ explicit boundary. The next implementation-ready packet is R1C in `NEXT_WORK_PAC
 - Dependency-free validation of registry agreement, lifecycle status, seeds/budgets,
   metrics and population aggregates, hashes, declared inventory, policy metadata, paths,
   and summary headings.
+- An optional `neat` extra with a serial `neat-feedforward-experimental` policy, fixed
+  normalized 13-input novelty-scent adapter, five unchanged action outputs, raw-reward
+  fitness, disjoint evolutionary/holdout roots, provisional hashed artifacts, validation,
+  portable network JSON, and trusted-local ASCII winner replay.
 
 Historical experiment results—including mixed and negative memory/novelty findings—are
 preserved in `docs/experiments.md` and `docs/lab-notes.md`.
@@ -57,6 +64,8 @@ preserved in `docs/experiments.md` and `docs/lab-notes.md`.
 - Package metadata permits Python 3.10 through 3.13 (`>=3.10,<3.14`) so the core library
   remains usable on its existing range while preventing unsupported Python 3.14 setup.
 - Renderer dependency: pygame via the `render` extra.
+- Optional research dependency: NEAT-Python `>=2.0,<3` via the `neat` extra; verified
+  locally as 2.0.0.
 
 See `DECISIONS.md` for the runtime decision and `OPEN_QUESTIONS.md` for the unresolved
 long-term compatibility policy.
@@ -103,12 +112,27 @@ runs; metrics summarize outcomes; renderers observe state without changing it. S
   `test-smoke-profile` and `source-not-clean` deviations.
 - R1B explicit legacy wrapper: passed and reproduced the deterministic Phase 3D comparison.
 - R1B canonical quick and full evidence suites: not run; execution and audit belong to R1C.
+- RS-01 optional install: `.[dev,render,neat]` installed NEAT-Python 2.0.0 successfully
+  under Python 3.13.13.
+- RS-01 focused NEAT suite: 15 passed with one upstream NEAT exporter deprecation warning.
+- RS-01 full quality gate: 126 tests, Ruff lint, and Ruff format check passed after one
+  new test file was mechanically formatted.
+- RS-01 bounded default evolution: produced and validated ignored run
+  `20260726T153027Z_neat-feedforward-experimental_19fa` as `partial` solely because the
+  source worktree was dirty. Winner 40 had recomputed fitness `1.1953333333333345` and
+  holdout mean reward `-0.686`.
+- Its explicitly noncanonical holdout comparison reported random `-0.067333333333333`,
+  local-Q `0.758`, novelty-scent-Q `-0.0673333333333334`, and NEAT `-0.686`. This mixed,
+  negative generalization result does not support promotion.
+- The retained artifact passed validate-only, and trusted-local ASCII replay executed three
+  actions with debug inputs, scores, and choices. No pygame or Godot run was performed.
 
 The exact R0 engineering verification and publication histories are recorded in
 `docs/verification/2026-07-20-r0.md` and
 `docs/verification/2026-07-21-git-publication.md`. R1A evidence is in
 `docs/verification/2026-07-23-r1a.md`; R1B evidence is in
-`docs/verification/2026-07-26-r1b.md`.
+`docs/verification/2026-07-26-r1b.md`; RS-01 evidence is in
+`docs/verification/2026-07-26-rs-01.md`.
 
 
 ## Known Limitations
@@ -124,6 +148,13 @@ The exact R0 engineering verification and publication histories are recorded in
 - No reproduction, inheritance, population model, environmental regime changes, or
   multi-agent ecology is implemented.
 - Pygame behavior requires a human-visible manual check.
+- The optional NEAT result is a single bounded, dirty-source research run with poor holdout
+  performance; it is not canonical evidence or a cross-platform reproducibility claim.
+- Pickled winning genomes are safe only as trusted local artifacts. The portable JSON
+  representation is stored but is not yet a project-owned standalone policy loader.
+- The Lenia/Godot path is documentation only; CPU equations, parity tolerances, field
+  serialization performance, Godot 4.7.1 APIs, and GPU behavior remain unimplemented and
+  unverified.
 
 ## Known Technical Debt
 
@@ -133,6 +164,9 @@ The exact R0 engineering verification and publication histories are recorded in
 - Experiment configuration is distributed across code defaults and CLI flags.
 - Historical phase language drifted away from the current R0-R6 research ladder.
 - Source archives have repeatedly included ignored local artifacts.
+- Experimental and legacy evaluators duplicate some episode diagnostic collection, and
+  neuroevolution reproducibility remains bounded by dependency/platform floating point.
+- The proposed Python/Godot protocol and numeric parity thresholds remain unimplemented.
 
-The bounded debt inventory is in `docs/architecture/TECHNICAL_DEBT.md`; R1B intentionally
+The bounded debt inventory is in `docs/architecture/TECHNICAL_DEBT.md`; RS-01 intentionally
 does not broadly refactor the legacy runtime modules.
