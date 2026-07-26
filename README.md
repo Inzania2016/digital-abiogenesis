@@ -5,8 +5,9 @@ adaptive behavior. Its current organism, **Bacterium-0**, is a Gymnasium-compati
 microbe with energy, food, poison, tabular Q-learning, deterministic evaluation, and ASCII
 and sprite-based pygame observation windows.
 
-The project is currently at **R0: Rebaseline and engineering retool**. Bacterium-0 is being
-preserved as the legacy benchmark before named benchmark scenarios are defined in R1.
+The project is currently at **R1B: benchmark runner and artifact writer**. Bacterium-0 is
+preserved as the legacy tabular benchmark behind named, versioned scenarios and
+machine-readable experiment artifacts.
 
 ## Quick Setup
 
@@ -28,11 +29,16 @@ Run the canonical quality gate:
 .\scripts\check.ps1
 ```
 
-Run the current deterministic multi-seed benchmark wrapper:
+Run the canonical quick benchmark. This writes an ignored contract-v1 run directory under
+`runs/`:
 
 ```powershell
 .\scripts\run-benchmark.ps1
 ```
+
+Use `.\scripts\run-benchmark.ps1 -Mode Legacy` for the historical Phase 3D regression
+output. Detailed dry-run, smoke, validation, and policy-retention commands are in
+`docs/COMMANDS.md`.
 
 ## Observe Bacterium-0
 

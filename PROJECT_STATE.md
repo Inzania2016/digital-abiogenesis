@@ -1,15 +1,15 @@
 # Project State
 
-Last reconciled: 2026-07-23
+Last reconciled: 2026-07-26
 
 ## Current Phase
 
-**R1A: Bacterium-0 benchmark specification, implemented and automatically verified.**
-Bacterium-0 remains conceptually frozen as the legacy benchmark organism. R1A defines
-named suites, scenarios, canonical policies, metric semantics, and artifact contract v1
-without implementing the runner or changing organism behavior. Manual pygame verification
-remains Joe's explicit boundary. The next implementation-ready packet is R1B in
-`NEXT_WORK_PACKET.md`.
+**R1B: Bacterium-0 benchmark runner and artifact writer, implemented and automatically
+verified.** Bacterium-0 remains conceptually frozen as the legacy benchmark organism. R1B
+implements the approved R1A scenario/suite catalog, narrow execution layer, contract-v1
+artifact writer, deterministic summary, optional policy persistence, and dependency-free
+validator without changing organism behavior. Manual pygame verification remains Joe's
+explicit boundary. The next implementation-ready packet is R1C in `NEXT_WORK_PACKET.md`.
 
 ## Canonical Repository
 
@@ -39,6 +39,13 @@ remains Joe's explicit boundary. The next implementation-ready packet is R1B in
 - An approved `bacterium-0-v1` specification with quick/full suite profiles, five named
   scenarios, five canonical policies, exact seed/budget rules, and contract-v1 artifact
   examples.
+- An immutable benchmark catalog and CLI runner covering stable, sparse-food, poison-rich,
+  resource-shift, and unseen-seed scenarios through existing training/evaluation seams.
+- Atomic contract-v1 manifest, metrics, summary, and optional learned-policy output under
+  collision-safe ignored run directories.
+- Dependency-free validation of registry agreement, lifecycle status, seeds/budgets,
+  metrics and population aggregates, hashes, declared inventory, policy metadata, paths,
+  and summary headings.
 
 Historical experiment results—including mixed and negative memory/novelty findings—are
 preserved in `docs/experiments.md` and `docs/lab-notes.md`.
@@ -86,20 +93,32 @@ runs; metrics summarize outcomes; renderers observe state without changing it. S
 - R1A `scripts/run-benchmark.ps1`: passed for seeds 21-23, 200 training episodes, and 20
   evaluation episodes; it reproduced the historical Phase 3D metrics.
 - R1A full `b0-full-v1` suite: not run, as required by the specification packet.
+- R1B focused benchmark tests: passed with 24 tests after formatting; the complete quality
+  gate passed with 111 tests plus Ruff lint and formatting checks.
+- R1B canonical dry run: passed and resolved `stable-default-v1`, `b0-quick-v1`, roots
+  21-23, 200/20 episode budgets, and the five approved policies without writing artifacts.
+- R1B tiny retained-policy smoke: produced a valid `partial` run containing five policy
+  result sets and four learned Q-table artifacts. The validator passed its hashes,
+  aggregate arithmetic, declarations, and file inventory. It correctly declared
+  `test-smoke-profile` and `source-not-clean` deviations.
+- R1B explicit legacy wrapper: passed and reproduced the deterministic Phase 3D comparison.
+- R1B canonical quick and full evidence suites: not run; execution and audit belong to R1C.
 
 The exact R0 engineering verification and publication histories are recorded in
 `docs/verification/2026-07-20-r0.md` and
 `docs/verification/2026-07-21-git-publication.md`. R1A evidence is in
-`docs/verification/2026-07-23-r1a.md`.
+`docs/verification/2026-07-23-r1a.md`; R1B evidence is in
+`docs/verification/2026-07-26-r1b.md`.
 
 
 ## Known Limitations
 
-- Named benchmark scenarios and artifact schemas are specified but no general runner,
-  artifact writer, registry, or validator is implemented yet.
-- The sparse-food, poison-rich, and resource-shift scenarios require R1B orchestration
-  support; the legacy CLI cannot express their full contracts.
-- Experiment comparisons are driven by large command surfaces rather than manifests.
+- Canonical quick/full benchmark evidence has not yet been executed, audited, or frozen
+  into an R1 report.
+- Adjacent replicate roots preserve overlapping episode-seed windows; benchmark v1
+  documents this limitation and does not establish statistically independent worlds.
+- The new benchmark path and legacy evaluator share behavior through public function seams
+  rather than a consolidated execution core, so characterization tests remain important.
 - The tabular state space grows quickly for memory-rich encoders; recorded results show
   that several variants do not outperform the local baseline under tested budgets.
 - No reproduction, inheritance, population model, environmental regime changes, or
@@ -115,5 +134,5 @@ The exact R0 engineering verification and publication histories are recorded in
 - Historical phase language drifted away from the current R0-R6 research ladder.
 - Source archives have repeatedly included ignored local artifacts.
 
-The bounded debt inventory is in `docs/architecture/TECHNICAL_DEBT.md`; R0 intentionally
-does not refactor these runtime modules.
+The bounded debt inventory is in `docs/architecture/TECHNICAL_DEBT.md`; R1B intentionally
+does not broadly refactor the legacy runtime modules.

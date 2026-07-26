@@ -1,6 +1,6 @@
 # Technical Debt Inventory
 
-Last reviewed: 2026-07-20
+Last reviewed: 2026-07-26
 
 This file records debt without authorizing broad R0 refactoring. Priority should be set by
 future work packets and evidence needs.
@@ -12,8 +12,10 @@ concerns: training invocation, evaluation loops, reward shaping, variant registr
 multi-seed aggregation, formatting, and CLI parsing. This makes benchmark contracts harder
 to isolate and increases the risk of inconsistent variants.
 
-Likely future direction: separate scenario specification, execution, aggregation, and
-presentation after R1 defines stable artifacts. Do not refactor ahead of that contract.
+R1B adds a separate benchmark control layer around public evaluator/training seams rather
+than refactoring this module. Likely future direction: characterize and extract shared
+evaluation responsibilities after R1 evidence establishes which seams need to remain
+stable.
 
 ## TD-002: Training and Evaluation Responsibilities Are Entangled
 
@@ -40,8 +42,8 @@ Experiment configuration is spread across dataclass defaults, function parameter
 flags, and command documentation. Exact runs depend on long command lines and implicit code
 defaults.
 
-R1 response: named scenarios and the experiment artifact contract should establish an
-explicit versioned source before changing runtime orchestration.
+R1B mitigation: the benchmark catalog and resolved manifest provide an explicit versioned
+source for canonical runs. Legacy exploratory CLIs still retain distributed configuration.
 
 ## TD-005: README Command Catalog Growth
 
@@ -63,11 +65,29 @@ local outputs. `.gitignore` cannot protect ad hoc zip tools.
 R0 mitigation: `scripts/package-source.ps1` filters archive entries independently of Git.
 The broader artifact retention policy remains an owner decision.
 
-## TD-008: No Machine-Readable Benchmark Contract
+## TD-008: Machine-Readable Benchmark Contract Is New and Unaudited at Scale
 
-Historical commands and Markdown results are useful but do not emit standardized manifests,
-metrics files, or versioned summaries. They should not be retroactively presented as if they
-did.
+Historical commands and Markdown results remain useful but do not emit standardized
+manifests, metrics files, or versioned summaries. They should not be retroactively
+presented as if they did.
 
-R1 response: finalize and implement the provisional contract in
-`docs/experiments/EXPERIMENT_ARTIFACT_CONTRACT.md`.
+R1B implements the v1 writer and validator. R1C still needs to execute and audit canonical
+quick/full evidence, measure cost, and expose any scale or usability problems.
+
+## TD-009: Benchmark and Legacy Evaluation Paths Share Behavior Indirectly
+
+The benchmark runner deliberately calls existing public training and evaluation functions
+instead of extracting common evaluator internals. This minimizes R1B behavior risk but
+leaves two orchestration paths that could drift.
+
+Likely future direction: retain deterministic characterization tests and consolidate only
+after the v1 evidence run identifies a concrete maintenance need.
+
+## TD-010: Adjacent Replicate Roots Overlap Evaluation Windows
+
+The preserved `root + 100000` episode-seed derivation means adjacent replicate roots
+produce overlapping evaluation episode seeds. Benchmark v1 documents this limitation and
+must not imply independent worlds.
+
+Likely future direction: decide after R1C whether a future benchmark version should use
+non-overlapping windows. Do not change v1 seed semantics in place.

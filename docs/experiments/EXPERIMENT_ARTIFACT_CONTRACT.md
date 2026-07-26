@@ -1,6 +1,6 @@
 # Experiment Artifact Contract v1
 
-Status: **approved R1A specification; writer and validator implementation belong to R1B**
+Status: **approved R1A specification; implemented by the R1B writer and validator**
 
 ## Purpose and Authority
 
@@ -363,7 +363,7 @@ are complete. Hashes in the example manifest must match the example `metrics.jso
 
 ## Integrity and Validation Rules
 
-A dependency-free R1B validator must check at least:
+The dependency-free R1B validator checks at least:
 
 - required keys, types, enums, ID/version agreement, and run-ID format;
 - manifest scenario, suite, policy, seed, and budget agreement with the benchmark registry;
@@ -376,17 +376,22 @@ A dependency-free R1B validator must check at least:
 - no absolute machine paths;
 - immutability/no overwrite for completed runs.
 
-JSON Schema files are not added in R1A. Cross-file arithmetic, hashes, policy ordering, and
-scenario-registry rules require executable validation, so an incomplete schema would create
-false confidence. R1B should implement the small structural and integrity validator with
-the Python standard library.
+JSON Schema files are not added. Cross-file arithmetic, hashes, policy ordering, and
+scenario-registry rules require executable validation, so an incomplete schema would
+create false confidence. `abiogenesis.benchmark.validation` implements the structural and
+integrity checks with the Python standard library.
 
 ## Optional Policy Artifacts
 
-Policy output is opt-in per policy. When requested, the writer records format, hash, byte
-count, and exact load command. When not requested, no `policy/` directory is created.
-Generated policy artifacts remain ignored by Git. This contract does not authorize curated
-models or change the commit gate.
+Policy output is opt-in. When requested, the writer stores one learned Q-table per learned
+policy and replicate root and records policy ID, root, format, hash, byte count, and a
+portable load command. The random baseline has no learned artifact. When output is not
+requested, no `policy/` directory is created. Generated policy artifacts remain ignored by
+Git. This contract does not authorize curated models or change the commit gate.
+
+The implementation-only `--test-smoke` profile reduces roots and episode budgets. Its
+manifest declares a `test-smoke-profile` deviation and its terminal status is `partial`;
+it cannot be interpreted as canonical benchmark evidence.
 
 ## Historical and Claim Boundaries
 

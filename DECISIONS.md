@@ -117,3 +117,25 @@ instead of adding the proposed alias `novelty_bonus_total`.
 A policy artifact is emitted only when requested. Its policy ID, format, path, SHA-256,
 byte count, and load command must be declared. Otherwise the run has no `policy/`
 directory. R1A does not authorize curated policy commits or change the owner commit gate.
+
+## 2026-07-26 — R1B is a narrow orchestration layer
+
+The benchmark runner reuses the existing public training, greedy evaluation, random
+evaluation, environment configuration, and `RunSummary` seams. It does not refactor
+`evaluate_q_learning.py` or change environment, reward, agent, encoder, or episode-metric
+semantics. Scenario selection, suite resolution, cross-seed aggregation, artifact writing,
+and validation live under `abiogenesis.benchmark`.
+
+`resource-shift-v1` is implemented by training under the stable configuration and
+evaluating the frozen greedy policy under the sparse-food configuration. Evaluation does
+not update Q values.
+
+## 2026-07-26 — Noncanonical execution cannot claim completion
+
+A run using the implementation-only `--test-smoke` profile, a policy subset, or a dirty
+source tree records explicit deviations and terminates as `partial`, even when its files
+validate. Only an undeviated canonical policy set, seed schedule, budget, clean source
+state, complete metrics, and verified artifacts may terminate as `completed`.
+
+The PowerShell wrapper now defaults to the named contract-v1 runner. The historical Phase
+3D command remains available explicitly as `scripts/run-benchmark.ps1 -Mode Legacy`.

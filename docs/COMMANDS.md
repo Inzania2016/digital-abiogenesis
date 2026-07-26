@@ -36,14 +36,14 @@ Remove ignored run/artifact output only when intentional:
 
 ## Legacy Multi-seed and Reward Experiments
 
-The current wrapper uses the latest small documented comparison:
+The legacy mode preserves the latest small documented comparison:
 
 ```powershell
-.\scripts\run-benchmark.ps1
+.\scripts\run-benchmark.ps1 -Mode Legacy
 ```
 
-This is the R1A regression command, not the contract-v1 runner. It evaluates every legacy
-variant, does not select the five canonical policies, and does not write a run directory.
+It evaluates every legacy variant, does not select only the five canonical policies, and
+does not write a run directory.
 
 Direct forms:
 
@@ -64,8 +64,40 @@ The named benchmark is specified in
 | `b0-quick-v1` | 21-23 | 200 | 20 |
 | `b0-full-v1` | 21-30 | 1000 | 100 |
 
-R1B will implement the runner and artifact writer. No canonical runner command exists yet;
-do not present the illustrative command in the documentation example as executable.
+Inspect the resolved default quick plan without writing artifacts:
+
+```powershell
+.\.venv\Scripts\python.exe -m abiogenesis.benchmark.runner --dry-run
+```
+
+Run the canonical default (`stable-default-v1`, `b0-quick-v1`, all five policies):
+
+```powershell
+.\scripts\run-benchmark.ps1
+```
+
+Select another named scenario or suite:
+
+```powershell
+.\scripts\run-benchmark.ps1 -Scenario resource-shift-v1 -Suite b0-quick-v1
+```
+
+Retain optional learned Q-table artifacts:
+
+```powershell
+.\scripts\run-benchmark.ps1 -KeepPolicies
+```
+
+Run the tiny implementation-only smoke profile and validate its artifact:
+
+```powershell
+.\scripts\run-benchmark.ps1 -Mode Smoke -OutputRoot runs/r1b-smoke
+.\.venv\Scripts\python.exe -m abiogenesis.benchmark.runner --validate-only <run-directory>
+```
+
+The smoke run is always `partial` and cannot support benchmark claims. Runtime runs are
+written below `runs/`, which is ignored. R1C owns canonical quick/full evidence execution;
+do not run `b0-full-v1` casually.
 
 ## Encoder Variants
 

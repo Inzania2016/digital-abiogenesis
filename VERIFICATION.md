@@ -20,14 +20,38 @@ Run the complete quality gate:
 2. `ruff check .`;
 3. `ruff format --check .`.
 
-Run the legacy deterministic benchmark wrapper:
+Inspect the canonical quick plan without creating artifacts:
+
+```powershell
+.\.venv\Scripts\python.exe -m abiogenesis.benchmark.runner --dry-run
+```
+
+Run the canonical quick benchmark and write an ignored contract-v1 run:
 
 ```powershell
 .\scripts\run-benchmark.ps1
 ```
 
-This remains the R1A regression check. It does not emit contract-v1 artifacts and is not a
-substitute for the named runner specified for R1B.
+Run a deliberately noncanonical tiny smoke profile for implementation verification:
+
+```powershell
+.\scripts\run-benchmark.ps1 -Mode Smoke -OutputRoot runs/r1b-smoke
+```
+
+Smoke runs declare a `test-smoke-profile` deviation and finish `partial`; they are never
+canonical evidence. Validate any generated run with:
+
+```powershell
+.\.venv\Scripts\python.exe -m abiogenesis.benchmark.runner --validate-only <run-directory>
+```
+
+Run the historical Phase 3D regression path explicitly:
+
+```powershell
+.\scripts\run-benchmark.ps1 -Mode Legacy
+```
+
+The legacy path does not emit contract-v1 artifacts.
 
 Validate the R1A documentation examples without third-party schema tools:
 
@@ -36,9 +60,8 @@ Validate the R1A documentation examples without third-party schema tools:
 .\.venv\Scripts\python.exe -m json.tool docs/experiments/examples/b0-quick-v1/metrics.json
 ```
 
-For the example artifact pair, recompute SHA-256 and confirm it matches the declarations in
-`manifest.json`. Structural, cross-file, aggregate-arithmetic, and scenario-registry
-validation becomes an automated R1B responsibility.
+The executable validator applies to runtime-generated artifacts. The R1A examples remain
+synthetic documentation and retain their separate documented integrity check.
 
 ## Manual Pygame Verification
 

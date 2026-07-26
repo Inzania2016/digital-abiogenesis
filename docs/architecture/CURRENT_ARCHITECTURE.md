@@ -1,11 +1,12 @@
 # Current Architecture
 
-Last inventoried: 2026-07-23
+Last inventoried: 2026-07-26
 
 ## Scope
 
-This is the implemented Bacterium-0 architecture plus the R1A specification boundary. It
-inventories existing behavior; it does not prescribe Bacterium-1 or refactor the runtime.
+This is the implemented Bacterium-0 architecture through the R1B benchmark control layer.
+It inventories existing behavior; it does not prescribe Bacterium-1 or refactor the
+legacy evaluator.
 
 ## Environment
 
@@ -61,11 +62,10 @@ the legacy benchmark script.
 
 R1A defines named suites, scenarios, canonical policy IDs, seed policy, and artifact
 schemas in `docs/experiments/BACTERIUM_0_BENCHMARK_V1.md` and
-`docs/experiments/EXPERIMENT_ARTIFACT_CONTRACT.md`. These are specifications, not an
-implemented runtime layer. The current evaluator cannot select only the canonical policy
-set, vary food/poison counts through its CLI, separate training and evaluation
-configurations for `resource-shift-v1`, or emit contract-v1 run directories. R1B owns those
-orchestration seams.
+`docs/experiments/EXPERIMENT_ARTIFACT_CONTRACT.md`. R1B implements those definitions in
+`abiogenesis.benchmark` without widening the legacy evaluator CLI. The runner can select
+the canonical policy set, resolve explicit food/poison counts, and use separate training
+and frozen evaluation configurations for `resource-shift-v1`.
 
 ## Metrics
 
@@ -74,9 +74,26 @@ cover total/average reward, lifespan, food, poison, wasted/repeated movement, un
 loop categories, novelty bonuses, and revisit ratio.
 
 Current `RunSummary` semantics matter to R1: reward, lifespan, and revisit ratio are episode
-means, while count and coverage fields are totals over evaluation episodes. The legacy
-multi-seed evaluator then averages those seed summaries without dispersion. R1B must add
-contract aggregation without changing episode measurement.
+means, while count and coverage fields are totals over evaluation episodes. The benchmark
+runner preserves those per-seed meanings and adds count, mean, population standard
+deviation, minimum, and maximum across replicate roots.
+
+## Benchmark Control Layer
+
+`src/abiogenesis/benchmark/` contains:
+
+- `catalog.py`: immutable scenario, suite, and canonical-policy definitions;
+- `models.py`: benchmark value objects, status values, metric names, and headings;
+- `runner.py`: CLI resolution and narrow orchestration over existing training/evaluation
+  functions;
+- `artifacts.py`: collision-safe run directories, atomic writes, and SHA-256 metadata;
+- `summary.py`: deterministic human-readable summaries;
+- `validation.py`: dependency-free cross-file, registry, arithmetic, hash, and inventory
+  validation.
+
+Canonical runs contain all five policies. Test-smoke runs, policy subsets, and dirty-source
+runs record deviations and cannot be marked `completed`. Optional learned Q tables are
+written only when requested.
 
 ## Rendering
 
@@ -99,11 +116,12 @@ or environment dynamics.
 - `scripts/check.ps1` runs pytest and Ruff gates.
 - `scripts/clean.ps1` removes safe generated caches and optionally output folders.
 - `scripts/package-source.ps1` creates a filtered source archive.
-- `scripts/run-benchmark.ps1` wraps the current deterministic multi-seed evaluation.
+- `scripts/run-benchmark.ps1` defaults to the contract-v1 runner and retains an explicit
+  `-Mode Legacy` regression path.
 
 The R1A example artifacts under `docs/experiments/examples/b0-quick-v1/` are synthetic
-documentation, not generated results. No scenario registry, benchmark runner, artifact
-writer, or validator is implemented yet.
+documentation, not generated results. Runtime artifacts are written under ignored `runs/`
+directories and validated against the implemented registry.
 
 ## Documentation
 
@@ -137,8 +155,7 @@ explicit config + seed
                                      run summary / comparison
 ```
 
-The specified R1B control flow will add a behavior-neutral orchestration layer around this
-flow:
+R1B adds this behavior-neutral orchestration layer around the existing flow:
 
 ```text
 scenario registry + suite profile
