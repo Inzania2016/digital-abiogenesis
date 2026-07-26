@@ -182,3 +182,24 @@ The proposed continuous substrate begins with a small NumPy CPU mathematical ref
 32x32/64x64 fixtures. A future Godot 4.7.1 backend must be compared using measured maximum
 and mean cell error, mass difference, and centroid difference under owner-approved
 tolerances. RS-01 adds no Lenia runtime or Godot project and copies no external code.
+
+## 2026-07-26 — R1C accepts benchmark-v1 seed overlap and retains no policies
+
+R1C accepts the adjacent replicate-root episode-window overlap as a documented benchmark-v1
+limitation. It does not imply complete independence or redesign the schedule. Any redesign
+requires a future scenario or benchmark version.
+
+Canonical R1C runs omit generated policy artifacts. All ten quick/full run directories and
+the execution ledger remain local and ignored. This packet does not decide whether a future
+small curated policy may be committed.
+
+## 2026-07-26 — Full canonical evidence passed the measured runtime gate
+
+Five validated quick runs totaled 27.656 seconds. Scaling the measured variable time by the
+quick/full episode-work ratio and adding a 20% margin projected 506.820 seconds for the full
+suite, below both approved thresholds. All five full runs therefore executed sequentially,
+validated, and totaled 489.825 seconds.
+
+The frozen report separates shaped and unshaped return, preserves mixed and negative
+findings, and records that `unseen-seeds-v1` duplicates `stable-default-v1` under the
+benchmark-v1 environment and seed definitions. R1C changes no organism behavior.

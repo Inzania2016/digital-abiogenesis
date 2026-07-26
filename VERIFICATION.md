@@ -45,6 +45,12 @@ canonical evidence. Validate any generated run with:
 .\.venv\Scripts\python.exe -m abiogenesis.benchmark.runner --validate-only <run-directory>
 ```
 
+The frozen R1C report is
+`docs/experiments/BACTERIUM_0_V1_BENCHMARK_REPORT.md`; its exact commands, run IDs,
+runtimes, audit results, and boundaries are recorded in
+`docs/verification/2026-07-26-r1c.md`. Generated canonical evidence remains ignored under
+`runs/r1c/`.
+
 Run the historical Phase 3D regression path explicitly:
 
 ```powershell

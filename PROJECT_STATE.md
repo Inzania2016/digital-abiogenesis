@@ -4,8 +4,13 @@ Last reconciled: 2026-07-26
 
 ## Current Phase
 
-**R1C remains the active Bacterium-0 mainline packet after the committed and verified R1B
-baseline.** Bacterium-0 remains conceptually frozen as the legacy benchmark organism.
+**R1C is complete.** All five quick and all five full Bacterium-0 benchmark-v1 scenarios
+completed from clean commit `7164e571810deac67042b87e3a5eacddfc24f6f0`, validated, and
+were frozen in `docs/experiments/BACTERIUM_0_V1_BENCHMARK_REPORT.md`. Bacterium-0 remains
+conceptually frozen as the legacy benchmark organism.
+
+The next active packet is RS-02, a deterministic Conway-to-Lenia CPU reference. It has not
+started.
 
 The isolated RS-01 side track is implemented and automatically verified: optional
 NEAT-Python feed-forward evolution reuses the existing novelty-scent representation and
@@ -49,6 +54,8 @@ Manual pygame verification remains Joe's explicit boundary.
 - Dependency-free validation of registry agreement, lifecycle status, seeds/budgets,
   metrics and population aggregates, hashes, declared inventory, policy metadata, paths,
   and summary headings.
+- Frozen canonical R1 evidence for all five quick and full scenarios, with runtime cost,
+  shaped/unshaped return boundaries, mixed and negative findings, and ignored artifacts.
 - An optional `neat` extra with a serial `neat-feedforward-experimental` policy, fixed
   normalized 13-input novelty-scent adapter, five unchanged action outputs, raw-reward
   fitness, disjoint evolutionary/holdout roots, provisional hashed artifacts, validation,
@@ -112,6 +119,18 @@ runs; metrics summarize outcomes; renderers observe state without changing it. S
   `test-smoke-profile` and `source-not-clean` deviations.
 - R1B explicit legacy wrapper: passed and reproduced the deterministic Phase 3D comparison.
 - R1B canonical quick and full evidence suites: not run; execution and audit belong to R1C.
+- R1C canonical evidence: all five quick and all five full scenarios completed from clean
+  commit `7164e571810deac67042b87e3a5eacddfc24f6f0`; all ten runs passed independent
+  validate-only checks and explicit configuration, metric-completeness, aggregate-count,
+  inventory, and no-policy-artifact audits with zero deviations.
+- R1C runtime: quick runs totaled 27.656 seconds. The conservative full projection was
+  506.820 seconds; actual full execution totaled 489.825 seconds.
+- R1C findings: local Q led unshaped mean return and poison discipline in every distinct
+  tested environment; novelty shaping increased coverage while preserving a poison
+  tradeoff; the approved shift was mixed; and `unseen-seeds-v1` duplicated
+  `stable-default-v1` under the v1 definitions.
+- R1C pygame visual verification: not performed and not claimed. Generated policies were
+  not retained; all canonical run artifacts remain ignored.
 - RS-01 optional install: `.[dev,render,neat]` installed NEAT-Python 2.0.0 successfully
   under Python 3.13.13.
 - RS-01 focused NEAT suite: 15 passed with one upstream NEAT exporter deprecation warning.
@@ -131,16 +150,18 @@ The exact R0 engineering verification and publication histories are recorded in
 `docs/verification/2026-07-20-r0.md` and
 `docs/verification/2026-07-21-git-publication.md`. R1A evidence is in
 `docs/verification/2026-07-23-r1a.md`; R1B evidence is in
-`docs/verification/2026-07-26-r1b.md`; RS-01 evidence is in
+`docs/verification/2026-07-26-r1b.md`; R1C evidence is in
+`docs/verification/2026-07-26-r1c.md`; RS-01 evidence is in
 `docs/verification/2026-07-26-rs-01.md`.
 
 
 ## Known Limitations
 
-- Canonical quick/full benchmark evidence has not yet been executed, audited, or frozen
-  into an R1 report.
 - Adjacent replicate roots preserve overlapping episode-seed windows; benchmark v1
   documents this limitation and does not establish statistically independent worlds.
+- `unseen-seeds-v1` uses the same stable environment and evaluation-root derivation as
+  `stable-default-v1`, so both produced identical v1 policy payloads and do not constitute
+  distinct evidence conditions.
 - The new benchmark path and legacy evaluator share behavior through public function seams
   rather than a consolidated execution core, so characterization tests remain important.
 - The tabular state space grows quickly for memory-rich encoders; recorded results show
@@ -166,6 +187,8 @@ The exact R0 engineering verification and publication histories are recorded in
 - Source archives have repeatedly included ignored local artifacts.
 - Experimental and legacy evaluators duplicate some episode diagnostic collection, and
   neuroevolution reproducibility remains bounded by dependency/platform floating point.
+- Benchmark v1's named unseen-seed scenario is redundant with stable default and should be
+  revisited only in a future scenario or benchmark version.
 - The proposed Python/Godot protocol and numeric parity thresholds remain unimplemented.
 
 The bounded debt inventory is in `docs/architecture/TECHNICAL_DEBT.md`; RS-01 intentionally

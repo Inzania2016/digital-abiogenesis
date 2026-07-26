@@ -18,6 +18,9 @@ research question.
 
 ## R1: Bacterium-0 Benchmark v1
 
+Status: **completed 2026-07-26**. The frozen evidence report is
+`docs/experiments/BACTERIUM_0_V1_BENCHMARK_REPORT.md`.
+
 - **Research question:** What stable scenarios and artifact schema make Bacterium-0 a
   reproducible legacy benchmark?
 - **Intended deliverables:** named quick/full benchmark scenarios, versioned configuration,
@@ -85,4 +88,5 @@ research question.
 RS-01 proves optional neuroevolution plumbing on Bacterium-0 and proposes a CPU-first
 Lenia/Godot path. It does not replace or advance the R0-R6 mainline. The separate
 RS-01/L0-L7 research ladder, evidence gates, and model recommendations are maintained in
-`docs/research/lenia/IMPLEMENTATION_ROADMAP.md`; any stage requires its own approved packet.
+`docs/research/lenia/IMPLEMENTATION_ROADMAP.md`. RS-02 is now the next active packet, but it
+has not started and requires its own scope and equation decisions.
