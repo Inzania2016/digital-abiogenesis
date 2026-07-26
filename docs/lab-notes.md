@@ -548,3 +548,16 @@ dated R0 verification record rather than repeated here.
 Interpretation: this is an engineering rebaseline, not a new organism experiment. The next
 research task is R1A: define named Bacterium-0 benchmark scenarios and finalize the future
 run-artifact contract.
+
+## 2026-07-26: R1C Canonical Benchmark Evidence
+
+Executed all five quick and all five full Bacterium-0 v1 scenarios sequentially from clean
+commit `7164e571810deac67042b87e3a5eacddfc24f6f0`. Every run completed, passed validate-only
+and explicit artifact/configuration audits, declared no deviations, and retained no policy
+files. Quick execution totaled 27.656 seconds; full execution totaled 489.825 seconds.
+
+Interpretation is frozen in
+`docs/experiments/BACTERIUM_0_V1_BENCHMARK_REPORT.md`. The result preserves local Q's strong
+poison discipline, shaped novelty's coverage/poison tradeoff, the mixed shift response, and
+the finding that the v1 unseen-seed scenario duplicates stable-default evidence. No
+organism behavior or pygame-visible surface changed.

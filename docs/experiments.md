@@ -448,3 +448,15 @@ coverage and food seeking in this small run. The shaped agent visited many more
 unique tiles and collected more food than unshaped novelty-scent, and its
 average reward rose. The cost was worse poison discipline. This is a promising
 exploration-pressure tradeoff, not a complete improvement.
+
+## 2026-07-26: Canonical Bacterium-0 Benchmark v1
+
+All five quick and all five full named scenarios completed from clean commit
+`7164e571810deac67042b87e3a5eacddfc24f6f0` and passed contract validation. The frozen
+report preserves the full machine-derived tables, shaped/unshaped boundary, runtime cost,
+mixed resource-shift result, and the redundant unseen-seed finding:
+
+- `docs/experiments/BACTERIUM_0_V1_BENCHMARK_REPORT.md`
+
+Generated run artifacts remain ignored and no policies were retained. This chronology entry
+does not duplicate or reinterpret the frozen numerical tables.

@@ -1,7 +1,6 @@
 # RS-02: Conway-to-Lenia CPU Reference
 
-Status: future proposed packet; not approved or executed. It does not replace R1C in
-`NEXT_WORK_PACKET.md`.
+Status: next active packet after completed R1C; not executed.
 
 ## Goal
 
