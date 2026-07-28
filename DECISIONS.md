@@ -203,3 +203,44 @@ validated, and totaled 489.825 seconds.
 The frozen report separates shaped and unshaped return, preserves mixed and negative
 findings, and records that `unseen-seeds-v1` duplicates `stable-default-v1` under the
 benchmark-v1 environment and seed definitions. R1C changes no organism behavior.
+
+## 2026-07-27 — Lenia paper v3 is the RS-02 mathematical authority
+
+RS-02 freezes Bert Wang-Chak Chan, “Lenia: Biology of Artificial Life,”
+arXiv `1812.05433v3`, equations 7-13 and 15-18. The implementation is a finite discrete
+numerical reference and does not claim the continuous-space limit.
+
+The author's repository at `adfc542939266de7f4bb7ebb552e8499701ee107` was used only to
+cross-check operational order. Contrary to the packet's preliminary license note, that
+exact tree contains an MIT `LICENSE.md`. No code, patterns, or assets were copied.
+
+## 2026-07-27 — The CPU reference uses one direct periodic float32 update
+
+The canonical model is two-dimensional, single-channel, additive Lenia with one normalized
+radial polynomial kernel: radius 5, alpha 4, beta `[1.0]`; exponential growth uses
+`mu=0.15`, `sigma=0.015`; `T=10` and `dt=0.1`. The boundary is periodic.
+
+Runtime fields, stored fields, and stored kernels use C-contiguous little-endian IEEE-754
+float32 (`<f4`). Kernel normalization and metric accumulation may use documented float64
+temporaries. Convolution uses a float32 accumulator and deterministic row-major kernel
+offsets with explicit `numpy.roll`; no FFT, SciPy, parallelism, backend selection, or GPU is
+part of RS-02. Updates are synchronous, non-mutating, and clipped only after adding growth
+to the unchanged current field.
+
+## 2026-07-27 — Small deterministic Lenia fixtures are source-controlled
+
+The project-authored 32x32 Gaussian-pair and 64x64 annulus/lobe recipes use no random source
+or external lifeform pattern. Initial and expected `.npy` arrays plus a hash manifest are
+committed as regression and future parity inputs. Loading always uses `allow_pickle=False`.
+
+Within the same Python, NumPy, OS, architecture, configuration, and implementation,
+regeneration and repeated steps must be bitwise identical. Across environments bitwise
+identity is not promised; CPU golden comparisons use `rtol=0, atol=1e-6`, and unexplained
+larger drift blocks rather than refreshes the goldens.
+
+## 2026-07-27 — Comparative repositories remain reference-only
+
+BioSim4 at `45e808cc86e24bae941b60ddebbedd53e874cbd5` and Evolving Protozoa at
+`c10d43879ad8873c68f113195785ccd1d9507d9b` inform later L2-L7 questions only. Neither is a
+dependency or port, and no code or assets were copied. BioSim4 is MIT but carries a
+file-level GPL provenance warning in its genome-comparison source; Evolving Protozoa is MIT.

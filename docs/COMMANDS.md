@@ -143,6 +143,29 @@ Available encoder names are `local`, `scent`, `conflict-scent`, `memory-scent`,
 .\.venv\Scripts\python.exe -m abiogenesis.training.train_q_learning --seed 21 --episodes 500 --grid-size 10 --encoder novelty-scent --novelty-reward 0.02
 ```
 
+## Lenia CPU Reference
+
+Verify committed fixtures:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\generate-lenia-fixtures.py --check
+```
+
+Execute the frozen 64x64 ten-step reference:
+
+```powershell
+.\.venv\Scripts\python.exe -m abiogenesis.lenia.reference --config configs\lenia\lenia-single-channel-cpu-v1.json --input tests\fixtures\lenia\field_64_initial.npy --steps 10 --output runs\lenia\field_64_step10.npy
+```
+
+Measure local serial CPU cost:
+
+```powershell
+.\.venv\Scripts\python.exe -m abiogenesis.lenia.reference --config configs\lenia\lenia-single-channel-cpu-v1.json --benchmark --sizes 32 64 --warmup 5 --steps 100
+```
+
+These are finite discrete, headless CPU operations. They do not run Godot, a GPU,
+evolution, or a discovered Lenia organism. See `docs/research/lenia/CPU_REFERENCE.md`.
+
 ## Hyperparameter Sweep
 
 ```powershell

@@ -1,6 +1,6 @@
 # Project State
 
-Last reconciled: 2026-07-26
+Last reconciled: 2026-07-27
 
 ## Current Phase
 
@@ -9,8 +9,13 @@ completed from clean commit `7164e571810deac67042b87e3a5eacddfc24f6f0`, validate
 were frozen in `docs/experiments/BACTERIUM_0_V1_BENCHMARK_REPORT.md`. Bacterium-0 remains
 conceptually frozen as the legacy benchmark organism.
 
-The next active packet is RS-02, a deterministic Conway-to-Lenia CPU reference. It has not
-started.
+**RS-02 is complete and automatically verified.** The project now has a deterministic,
+headless, finite discrete single-channel Lenia CPU reference with a minimal periodic Conway
+anchor, frozen equations/configuration, direct serial convolution, committed 32x32/64x64
+fixtures, mass/toroidal-centroid primitives, CLI replay, and local timing evidence.
+
+The next proposed side-track packet is L1, a Godot 4.7.1 GPU parity spike. It is not started
+or approved.
 
 The isolated RS-01 side track is implemented and automatically verified: optional
 NEAT-Python feed-forward evolution reuses the existing novelty-scent representation and
@@ -60,6 +65,12 @@ Manual pygame verification remains Joe's explicit boundary.
   normalized 13-input novelty-scent adapter, five unchanged action outputs, raw-reward
   fitness, disjoint evolutionary/holdout roots, provisional hashed artifacts, validation,
   portable network JSON, and trusted-local ASCII winner replay.
+- A deterministic `abiogenesis.lenia` CPU reference using periodic boundaries, one
+  normalized polynomial radial ring, exponential growth, clipped synchronous `dt=0.1`
+  updates, and canonical C-contiguous little-endian float32 arrays.
+- An independently auditable periodic Conway step, direct-convolution scalar-oracle tests,
+  deterministic analytic `.npy` fixtures and hashes, float64 mass, circular toroidal
+  centroid, fixed-step JSON CLI output, and serial timing mode.
 
 Historical experiment results—including mixed and negative memory/novelty findings—are
 preserved in `docs/experiments.md` and `docs/lab-notes.md`.
@@ -145,6 +156,18 @@ runs; metrics summarize outcomes; renderers observe state without changing it. S
   negative generalization result does not support promotion.
 - The retained artifact passed validate-only, and trusted-local ASCII replay executed three
   actions with debug inputs, scores, and choices. No pygame or Godot run was performed.
+- RS-02 clean-source gate: exact baseline
+  `ab7ae8e8cf38350a6764dd0d2d6af439b825a0f2`, clean worktree, tracked `origin/main`, and
+  pre-change 126-test/Ruff gate all passed.
+- RS-02 focused tests passed with 50 tests. The complete gate passed with 176 tests plus
+  Ruff lint and formatting; the existing upstream NEAT exporter warning remained.
+- Fixture regeneration was byte-identical. CLI 32x32 one-step and 64x64 ten-step outputs
+  matched committed SHA-256 goldens exactly.
+- On an Intel i7-9700F with Python 3.13.13 and NumPy 2.4.4, one serial 100-step measurement
+  after five warmups reported 3.567 ms/step at 32x32 and 3.893 ms/step at 64x64. This is
+  local timing, not a cross-machine benchmark.
+- No Godot, shader, GPU, visualization, evolution, resource, reproduction, or ecology work
+  was run or claimed.
 
 The exact R0 engineering verification and publication histories are recorded in
 `docs/verification/2026-07-20-r0.md` and
@@ -152,7 +175,8 @@ The exact R0 engineering verification and publication histories are recorded in
 `docs/verification/2026-07-23-r1a.md`; R1B evidence is in
 `docs/verification/2026-07-26-r1b.md`; R1C evidence is in
 `docs/verification/2026-07-26-r1c.md`; RS-01 evidence is in
-`docs/verification/2026-07-26-rs-01.md`.
+`docs/verification/2026-07-26-rs-01.md`; RS-02 evidence is in
+`docs/verification/2026-07-27-rs-02.md`.
 
 
 ## Known Limitations
@@ -173,9 +197,13 @@ The exact R0 engineering verification and publication histories are recorded in
   performance; it is not canonical evidence or a cross-platform reproducibility claim.
 - Pickled winning genomes are safe only as trusted local artifacts. The portable JSON
   representation is stored but is not yet a project-owned standalone policy loader.
-- The Lenia/Godot path is documentation only; CPU equations, parity tolerances, field
-  serialization performance, Godot 4.7.1 APIs, and GPU behavior remain unimplemented and
-  unverified.
+- The Lenia CPU reference is finite/discrete and intentionally limited to one channel, one
+  kernel, one configuration, and direct convolution. It does not establish a stable
+  morphology, organism, evolution, or continuous-space result.
+- Godot 4.7.1 APIs, compute availability, shader arithmetic, synchronization/transfer cost,
+  visualization, and CPU/GPU tolerances remain unimplemented and unverified.
+- Cross-environment CPU bitwise equality is not promised; the approved CPU-golden
+  comparison is `rtol=0, atol=1e-6`.
 
 ## Known Technical Debt
 
@@ -190,6 +218,8 @@ The exact R0 engineering verification and publication histories are recorded in
 - Benchmark v1's named unseen-seed scenario is redundant with stable default and should be
   revisited only in a future scenario or benchmark version.
 - The proposed Python/Godot protocol and numeric parity thresholds remain unimplemented.
+- Direct row-major NumPy convolution is deliberately auditable rather than optimized and
+  allocates rolled arrays for each nonzero kernel offset.
 
 The bounded debt inventory is in `docs/architecture/TECHNICAL_DEBT.md`; RS-01 intentionally
 does not broadly refactor the legacy runtime modules.

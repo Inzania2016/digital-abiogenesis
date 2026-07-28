@@ -11,3 +11,4 @@ Current records:
 - [2026-07-26 R1B benchmark runner and artifact writer](2026-07-26-r1b.md)
 - [2026-07-26 R1C canonical Bacterium-0 benchmark evidence](2026-07-26-r1c.md)
 - [2026-07-26 RS-01 NEAT feasibility and Lenia architecture](2026-07-26-rs-01.md)
+- [2026-07-27 RS-02 Conway-to-Lenia CPU reference](2026-07-27-rs-02.md)

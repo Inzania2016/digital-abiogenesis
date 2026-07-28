@@ -1,0 +1,15 @@
+{
+  "boundary": "periodic",
+  "config_id": "lenia-single-channel-cpu-v1",
+  "convolution": "direct-row-major",
+  "dt": 0.1,
+  "dtype": "<f4",
+  "growth_mu": 0.15,
+  "growth_sigma": 0.015,
+  "kernel_alpha": 4,
+  "kernel_beta": [
+    1.0
+  ],
+  "kernel_radius": 5,
+  "time_scale_T": 10
+}

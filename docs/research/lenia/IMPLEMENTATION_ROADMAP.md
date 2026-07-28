@@ -5,6 +5,8 @@ a separately approved work packet.
 
 ## RS-01 — NEAT Feasibility on Bacterium-0
 
+Status: completed 2026-07-26.
+
 - **Question:** Can optional NEAT plumbing work in the understood legacy environment?
 - **Deliverables:** feed-forward adapter, raw-reward evaluator, serial trainer, provisional
   artifacts/validator, trusted-local ASCII replay, provenance and architecture documents.
@@ -14,6 +16,8 @@ a separately approved work packet.
 - **Model:** GPT-5.6 Sol High; cross-cutting reproducibility and architecture justified High.
 
 ## L0 — Conway-to-Lenia CPU Reference
+
+Status: completed as RS-02 on 2026-07-27. See `CPU_REFERENCE.md`.
 
 - **Question:** Can the continuous update be specified and reproduced without a renderer?
 - **Deliverables:** NumPy CPU reference, 32x32/64x64 fixtures, explicit math/serialization,
@@ -25,6 +29,8 @@ a separately approved work packet.
   conflicting mathematical sources or unexplained numerical drift.
 
 ## L1 — Godot GPU Lenia Parity Spike
+
+Status: next proposed side-track packet; not started.
 
 - **Question:** Can Godot 4.7.1 reproduce the CPU contract with useful throughput?
 - **Deliverables:** minimal headless-capable project, compute backend, fixture protocol,

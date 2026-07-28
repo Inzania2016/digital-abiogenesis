@@ -1,6 +1,6 @@
 # RS-02: Conway-to-Lenia CPU Reference
 
-Status: next active packet after completed R1C; not executed.
+Status: completed and automatically verified 2026-07-27; awaiting owner commit approval.
 
 ## Goal
 
@@ -44,17 +44,19 @@ docs/verification/<date>-rs-02.md
 
 ```powershell
 .\scripts\check.ps1
-.\.venv\Scripts\python.exe -m pytest tests/test_lenia_*.py -q
+.\scripts\test.ps1 tests -k lenia -q
 git diff --check
 git status --short
 ```
 
-## Open Owner Decisions
+## Frozen RS-02 Decisions
 
-- Exact mathematical source/version to freeze.
-- Boundary rule and internal dtype.
-- Initial fixture set and whether small `.npy` fixtures may be committed.
-- Numeric repeatability expectations across supported Python/NumPy versions.
+- Mathematical authority: Chan paper arXiv `1812.05433v3`.
+- Periodic boundary and direct serial row-major convolution.
+- Runtime and persisted state/kernel dtype: `<f4`.
+- Project-authored analytic 32×32 and 64×64 fixtures are source-controlled.
+- Same-environment outputs are bitwise repeatable; cross-environment goldens use
+  `rtol=0, atol=1e-6` without a bitwise promise.
 
 ## Recommended Model
 

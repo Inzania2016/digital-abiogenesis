@@ -1,0 +1,57 @@
+{
+  "boundary": "periodic",
+  "config_id": "lenia-single-channel-cpu-v1",
+  "convolution": "direct-row-major",
+  "dtype": "<f4",
+  "files": [
+    {
+      "dtype": "<f4",
+      "path": "field_32_initial.npy",
+      "recipe_id": "analytic-gaussian-pair-v1",
+      "role": "initial",
+      "sha256": "b3d933cd8d42c01339062f0644db2d06244d13a83bf578aaee036e35743d2480",
+      "shape": [
+        32,
+        32
+      ],
+      "step_count": 0
+    },
+    {
+      "dtype": "<f4",
+      "path": "field_32_step1.npy",
+      "recipe_id": "analytic-gaussian-pair-v1",
+      "role": "expected-output",
+      "sha256": "380c7181d6706d5d42d007fa8a79fceae6c42cfce28dbceb9cb4907cbed70c4f",
+      "shape": [
+        32,
+        32
+      ],
+      "step_count": 1
+    },
+    {
+      "dtype": "<f4",
+      "path": "field_64_initial.npy",
+      "recipe_id": "analytic-annulus-lobe-v1",
+      "role": "initial",
+      "sha256": "9dc534a7cd0679e89269699b79bfe2f2cc34f33a36ce5455ab3a4558e04d791d",
+      "shape": [
+        64,
+        64
+      ],
+      "step_count": 0
+    },
+    {
+      "dtype": "<f4",
+      "path": "field_64_step10.npy",
+      "recipe_id": "analytic-annulus-lobe-v1",
+      "role": "expected-output",
+      "sha256": "034398266a4f25c9bc49fc31ad6df6e3583f6a151880b82e1eb4cd8c3642afa9",
+      "shape": [
+        64,
+        64
+      ],
+      "step_count": 10
+    }
+  ],
+  "fixture_contract": "lenia-cpu-fixtures-1.0"
+}

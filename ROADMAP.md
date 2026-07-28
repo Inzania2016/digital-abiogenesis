@@ -85,8 +85,8 @@ Status: **completed 2026-07-26**. The frozen evidence report is
 
 ## Isolated Research Side Tracks
 
-RS-01 proves optional neuroevolution plumbing on Bacterium-0 and proposes a CPU-first
-Lenia/Godot path. It does not replace or advance the R0-R6 mainline. The separate
-RS-01/L0-L7 research ladder, evidence gates, and model recommendations are maintained in
-`docs/research/lenia/IMPLEMENTATION_ROADMAP.md`. RS-02 is now the next active packet, but it
-has not started and requires its own scope and equation decisions.
+RS-01 proved optional neuroevolution plumbing on Bacterium-0. RS-02/L0 completed the
+deterministic single-channel Lenia CPU reference on 2026-07-27. Neither replaces or advances
+the R0-R6 mainline. The separate RS-01/L0-L7 ladder is maintained in
+`docs/research/lenia/IMPLEMENTATION_ROADMAP.md`; L1 Godot GPU parity is proposed next but is
+not approved or started.

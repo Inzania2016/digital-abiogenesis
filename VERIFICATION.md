@@ -59,6 +59,24 @@ Run the historical Phase 3D regression path explicitly:
 
 The legacy path does not emit contract-v1 artifacts.
 
+Verify committed Lenia CPU fixtures and run the focused suite:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\generate-lenia-fixtures.py --check
+.\scripts\test.ps1 tests -k lenia -q
+```
+
+Replay the canonical 64x64 input or measure local serial cost:
+
+```powershell
+.\.venv\Scripts\python.exe -m abiogenesis.lenia.reference --config configs/lenia/lenia-single-channel-cpu-v1.json --input tests/fixtures/lenia/field_64_initial.npy --steps 10 --output runs/lenia/field_64_step10.npy
+.\.venv\Scripts\python.exe -m abiogenesis.lenia.reference --config configs/lenia/lenia-single-channel-cpu-v1.json --benchmark --sizes 32 64 --warmup 5 --steps 100
+```
+
+Generated replay output remains ignored. CPU fixture regeneration is bitwise within the
+same recorded environment; cross-environment golden checks use `rtol=0, atol=1e-6`.
+Neither command verifies Godot, GPU parity, visual quality, or continuous-space Lenia.
+
 Validate the R1A documentation examples without third-party schema tools:
 
 ```powershell
