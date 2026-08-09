@@ -90,3 +90,16 @@ deterministic single-channel Lenia CPU reference on 2026-07-27. Neither replaces
 the R0-R6 mainline. The separate RS-01/L0-L7 ladder is maintained in
 `docs/research/lenia/IMPLEMENTATION_ROADMAP.md`; L1 Godot GPU parity is proposed next but is
 not approved or started.
+
+## Research Direction: Artificial Cells and Computational Metabolism
+
+`docs/research/alife/ARTIFICIAL_CELL_HYPOTHESIS.md` records a conceptual hypothesis that
+organism-like computation may emerge from populations of locally autonomous,
+energy-constrained artificial cells instead of requiring a declared organism. It may later
+inform how the project frames R2 homeostasis, Lenia local rules, R4/L7 reproduction, R5/L7
+ecology, and R6 comparative architectures.
+
+This is a pointer, not a milestone. It does not authorize implementation, does not add,
+reorder, or replace any R0-R6 milestone, does not change the L0-L7 side track, and does not
+change the active milestone or the proposed L1 GPU parity scope. Promotion to mainline work
+would require a separately approved work packet and an owner decision in `DECISIONS.md`.

@@ -244,3 +244,11 @@ BioSim4 at `45e808cc86e24bae941b60ddebbedd53e874cbd5` and Evolving Protozoa at
 `c10d43879ad8873c68f113195785ccd1d9507d9b` inform later L2-L7 questions only. Neither is a
 dependency or port, and no code or assets were copied. BioSim4 is MIT but carries a
 file-level GPL provenance warning in its genome-comparison source; Evolving Protozoa is MIT.
+
+## 2026-08-09 — The artificial-cell hypothesis is a research direction, not a milestone
+
+The project recognizes a bottom-up artificial-cell hypothesis alongside its top-down
+organism track. This conceptual direction does not add, reorder, replace, or advance any
+R0-R6 milestone; change the Lenia L0-L7 ladder or L1; or authorize implementation of
+artificial cells, metabolism, reproduction, ecology, or cognition. Its claims remain subject
+to the project's evidence standards, and substrate choice remains unresolved.

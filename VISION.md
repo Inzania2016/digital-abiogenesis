@@ -36,6 +36,19 @@ consciousness, sentience, self-awareness, subjective experience, or biological l
    larger intelligence architectures.
 7. **Observable behavior**: combine quantitative metrics with a renderer that cannot alter
    the experiment.
+8. **Do not assume the organism boundary**: controlled benchmarks may define an organism
+   explicitly, but later research should permit organism-like structures to emerge from
+   lower-level interacting units where that is experimentally justified. Where no organism
+   is declared, the boundary is a measurement rather than an assumption.
+9. **Energetic accountability**: where appropriate, sensing, computation, communication,
+   maintenance, growth, repair, and reproduction should carry explicit resource
+   consequences rather than depending exclusively on external task reward. Prefer letting
+   viability create selection pressure over adding an efficiency term to a reward function.
+
+Pillars 8 and 9 describe a research direction, not a retroactive mandate. They do not
+change Bacterium-0, the benchmark contracts, or any active milestone. The reasoning,
+unknowns, and explicit non-claims are recorded in
+`docs/research/alife/ARTIFICIAL_CELL_HYPOTHESIS.md`.
 
 ## Evidence Standards
 
@@ -46,6 +59,9 @@ consciousness, sentience, self-awareness, subjective experience, or biological l
   expectations.
 - Human-visible observations are labeled separately from automated results.
 - Missing artifacts, failed commands, and contradictory results remain visible.
+- Words such as organism, cooperation, specialization, memory, repair, adaptation, and
+  learning require an operational definition and a measurement before use as a claim. A
+  suggestive visualization may motivate a measurement but never replaces one.
 
 ## Non-goals
 

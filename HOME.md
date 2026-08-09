@@ -26,6 +26,7 @@ Obsidian-friendly navigation only; linked files remain authoritative for their s
 - [[docs/research/NEAT_BACTERIUM0_FEASIBILITY|NEAT Bacterium-0 feasibility contract and result]]
 - [[docs/research/lenia/CPU_REFERENCE|Deterministic Lenia CPU reference]]
 - [[docs/research/alife/COMPARATIVE_REFERENCES|Comparative artificial-life references]]
+- [[docs/research/alife/ARTIFICIAL_CELL_HYPOTHESIS|Artificial cell and computational metabolism hypothesis]]
 - [[docs/work-packets/RS-02_CONWAY_TO_LENIA_CPU_REFERENCE|Completed RS-02 CPU reference packet]]
 - [[docs/work-packets/L1_GODOT_GPU_LENIA_PARITY_SPIKE|Proposed L1 Godot parity packet]]
 

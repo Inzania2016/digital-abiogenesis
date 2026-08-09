@@ -39,3 +39,8 @@ BioSim4 and Evolving Protozoa may inform later phenotype measurement, optimizati
 controller, quality-diversity, reproduction, and ecology packets. They do not authorize any
 of those features in RS-02. This packet implements only a deterministic single-channel
 Lenia CPU mathematical reference.
+
+The construction/maintenance cost, resource-driven reproduction, evolvable sensing, and
+adhesion-with-exchange mechanisms noted above are the closest reviewed prior art to the
+conceptual direction in `ARTIFICIAL_CELL_HYPOTHESIS.md`. That document reasons about the
+direction; it also authorizes nothing.
